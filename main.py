@@ -7,6 +7,7 @@ def randomstring():
 
 
 user = input("Username > ")
+message = input("Message > ")
 client = requests.Session()
 r = client.get(f"https://www.ninjar.jp/users/{user}/themes/new")
 c = re.findall('"csrf-token" content=".+"', r.text)[0].split('"')[3]
@@ -35,7 +36,7 @@ headers = {
 }
 data = {
   "authenticity_token": c,
-  "theme_form[title]": "荒らしてみた - " + randomstring(),
+  "theme_form[title]": message+" - "+randomstring(),
   "theme_form[redirect_url]": "",
   "commit": "匿名で質問を送る"
 }
